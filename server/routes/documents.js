@@ -63,4 +63,19 @@ DocumentsRouter.get('/write/:docId/:username', async function(req, res) {
   res.send(isWriteUser);
 });
 
+// Adds text block
+DocumentsRouter.post('/blocks/add/text/:docId', async function(req, res) {
+  const { docId } = req.params;
+  const text = req.body.text;
+  await documents.addTextBlock(docId, text);
+  res.send('Success!');
+});
+
+// Removes block at index
+DocumentsRouter.get('/blocks/remove/:docId/:index', async function(req, res) {
+  const { docId, index } = req.params;
+  await documents.removeBlock(docId, index);
+  res.send('Success!');
+});
+
 module.exports = DocumentsRouter;

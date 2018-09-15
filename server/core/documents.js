@@ -1,5 +1,6 @@
 const users = require('../models/users');
 const documents = require('../models/documents');
+const blocks = require('./blocks');
 
 function getDoc(docId) {
   return documents.getDoc(docId);
@@ -42,6 +43,17 @@ function isWriteUser(docId, username) {
   return documents.isWriteUser(docId, username);
 }
 
+// BLOCKS
+
+async function removeBlock(docId, index) {
+  await documents.removeBlock(docId, index);
+}
+
+async function addTextBlock(docId, text) {
+  const block = blocks.createTextBlock(text);
+  await documents.addBlock(docId, block);
+}
+
 module.exports = {
   getDoc,
   createDoc,
@@ -52,4 +64,6 @@ module.exports = {
   addWriteUser,
   removeWriteUser,
   isWriteUser,
+  removeBlock,
+  addTextBlock,
 };

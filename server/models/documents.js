@@ -79,6 +79,29 @@ async function removeWriteUser(docId, username) {
   }));
 }
 
+async function addBlock(docId, block) {
+  const docRef = collection.doc(docId);
+  db.runTransaction(async t => {
+    const doc = await t.get(docRef);
+    if (!doc.exists) return;
+    const blocks = doc.get('blocks') || [];
+    blocks.push(block);
+    await t.update(docRef, { blocks });
+  });
+}
+
+async function removeBlock(docId, index) {
+  const docRef = collection.doc(docId);
+  db.runTransaction(async t => {
+    const doc = await t.get(docRef);
+    if (!doc.exists) return;
+    const blocks = doc.get('blocks') || [];
+    if (index >= blocks.length) return;
+    blocks.splice(index, 1);
+    await t.update(docRef, { blocks });
+  });
+}
+
 /****************************
  *													*
  *			G E T T E R S 			*
@@ -150,6 +173,8 @@ module.exports = {
   removeReadUser,
   addWriteUser,
   removeWriteUser,
+  addBlock,
+  removeBlock,
   getDoc,
   isReadUser,
   isWriteUser,
