@@ -15,11 +15,15 @@ async function createDoc(username) {
     docId = createDocId();
     exists = await docIdExists(docId);
   }
-  await collection.doc(docId).set({
-    read: { username: true },
-    write: { username: true },
+  const doc = {
+    read: {},
+    write: {},
     blocks: [],
-  });
+  };
+
+  doc.read[username] = true;
+  doc.write[username] = true;
+  await collection.doc(docId).set(doc);
   return docId;
 }
 
@@ -30,10 +34,9 @@ async function deleteDoc(docId) {
   try {
     await db.runTransaction(async t => {
       const doc = await t.get(docRef);
+      if (!doc.exists) return;
       const data = doc.data();
-      const readUsers = Object.keys(data.read);
-      const writeUsers = Object.keys(data.write);
-      users = readUsers.concat(writeUsers);
+      users = Object.keys(Object.assign(data.read, data.write));
     });
     await collection.doc(docId).delete();
   } catch(err) {
@@ -43,12 +46,37 @@ async function deleteDoc(docId) {
 }
 
 async function addReadUser(docId, username) {
-  const readRef = collection.doc(`${docId}.read`);
-  await readRef.update({ username: true });
+  const docRef = collection.doc(docId);
+  const updateObj = {};
+  updateObj[`read.${username}`] = true;
+  await docRef.update(updateObj);
 }
 
 async function removeReadUser(docId, username) {
-  await collection.doc(docId).doc(`read.${username}`).delete();
+  const docRef = collection.doc(docId);
+  db.runTransaction(t => t.get(docRef).then(doc => {
+    if (!doc.exists) return;
+    const read = doc.data().read;
+    delete read[username];
+    t.update(docRef, { read });
+  }));
+}
+
+async function addWriteUser(docId, username) {
+  const docRef = collection.doc(docId);
+  const updateObj = {};
+  updateObj[`write.${username}`] = true;
+  await docRef.update(updateObj);
+}
+
+async function removeWriteUser(docId, username) {
+  const docRef = collection.doc(docId);
+  db.runTransaction(t => t.get(docRef).then(doc => {
+    if (!doc.exists) return;
+    const write = doc.data().write;
+    delete write[username];
+    t.update(docRef, { write });
+  }));
 }
 
 /****************************
@@ -66,6 +94,30 @@ async function getDoc(docId) {
   } catch (err) {
     console.log(err);
     return {};
+  }
+}
+
+async function isReadUser(docId, username) {
+  const docRef = collection.doc(docId);
+  try {
+    const doc = await docRef.get();
+    if (!doc.exists) return false;
+    return doc.data().read.hasOwnProperty(username);
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
+
+async function isWriteUser(docId, username) {
+  const docRef = collection.doc(docId);
+  try {
+    const doc = await docRef.get();
+    if (!doc.exists) return false;
+    return doc.data().write.hasOwnProperty(username);
+  } catch (err) {
+    console.log(err);
+    return false;
   }
 }
 
@@ -96,5 +148,9 @@ module.exports = {
   deleteDoc,
   addReadUser,
   removeReadUser,
+  addWriteUser,
+  removeWriteUser,
   getDoc,
+  isReadUser,
+  isWriteUser,
 };
