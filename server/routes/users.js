@@ -9,6 +9,14 @@ UsersRouter.post('/create', async function(req, res) {
   res.send(`User ${username} has been created.`);
 });
 
+// Verifies user
+UsersRouter.post('/verify', async function(req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+  const isValid = await users.verifyUser(username, password);
+  res.send(isValid);
+});
+
 // Get user's doc ids
 UsersRouter.get('/docs/:username', async function(req, res) {
   const username = req.params.username.toLowerCase();

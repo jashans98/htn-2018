@@ -52,9 +52,22 @@ async function getDocIds(username) {
   }
 }
 
+async function verifyUser(username, password) {
+  const userRef = collection.doc(username);
+  try {
+    const user = await userRef.get();
+    if (!user.exists) return false;
+    return password === user.data().password;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
+
 module.exports = {
   createUser,
   addDoc,
   removeDoc,
   getDocIds,
+  verifyUser,
 };
