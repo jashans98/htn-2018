@@ -8,7 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		6601F3715083948DEA5565CA /* Pods_htn_2018.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0DD0C874F9F0E66F09E247 /* Pods_htn_2018.framework */; };
+		D832718D214D5DF40030E983 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832718C214D5DF40030E983 /* Colors.swift */; };
+		D832718F214D60440030E983 /* HTNTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D832718E214D60440030E983 /* HTNTextField.swift */; };
 		D893003B214CCCAC0070E38D /* BaseApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893003A214CCCAC0070E38D /* BaseApiService.swift */; };
+		D893003D214D50B20070E38D /* LoginFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893003C214D50B20070E38D /* LoginFormView.swift */; };
+		D8930040214D519A0070E38D /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = D893003F214D519A0070E38D /* Dimens.swift */; };
+		D8930042214D51E70070E38D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8930041214D51E70070E38D /* UIView+Extensions.swift */; };
+		D8930044214D597E0070E38D /* UserSignupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8930043214D597D0070E38D /* UserSignupService.swift */; };
+		D8930046214D59870070E38D /* UserSigninService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8930045214D59870070E38D /* UserSigninService.swift */; };
 		D8FE0DE5214CBDF400C4DDE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE0DE4214CBDF400C4DDE3 /* AppDelegate.swift */; };
 		D8FE0DE7214CBDF400C4DDE3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE0DE6214CBDF400C4DDE3 /* LoginViewController.swift */; };
 		D8FE0DEC214CBDF500C4DDE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8FE0DEB214CBDF500C4DDE3 /* Assets.xcassets */; };
@@ -24,7 +31,14 @@
 /* Begin PBXFileReference section */
 		4F0DD0C874F9F0E66F09E247 /* Pods_htn_2018.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_htn_2018.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBCECDF0D4F9094F03D4A8E5 /* Pods-htn-2018.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-htn-2018.release.xcconfig"; path = "Pods/Target Support Files/Pods-htn-2018/Pods-htn-2018.release.xcconfig"; sourceTree = "<group>"; };
+		D832718C214D5DF40030E983 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D832718E214D60440030E983 /* HTNTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTNTextField.swift; sourceTree = "<group>"; };
 		D893003A214CCCAC0070E38D /* BaseApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseApiService.swift; sourceTree = "<group>"; };
+		D893003C214D50B20070E38D /* LoginFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormView.swift; sourceTree = "<group>"; };
+		D893003F214D519A0070E38D /* Dimens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
+		D8930041214D51E70070E38D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		D8930043214D597D0070E38D /* UserSignupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignupService.swift; sourceTree = "<group>"; };
+		D8930045214D59870070E38D /* UserSigninService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninService.swift; sourceTree = "<group>"; };
 		D8FE0DE1214CBDF400C4DDE3 /* htn-2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "htn-2018.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FE0DE4214CBDF400C4DDE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8FE0DE6214CBDF400C4DDE3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +83,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D893003E214D518B0070E38D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D893003F214D519A0070E38D /* Dimens.swift */,
+				D8930041214D51E70070E38D /* UIView+Extensions.swift */,
+				D832718C214D5DF40030E983 /* Colors.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		D8930047214D59AE0070E38D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D893003A214CCCAC0070E38D /* BaseApiService.swift */,
+				D8930043214D597D0070E38D /* UserSignupService.swift */,
+				D8930045214D59870070E38D /* UserSigninService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		D8930048214D59C30070E38D /* Object Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Object Models";
+			sourceTree = "<group>";
+		};
 		D8FE0DD8214CBDF400C4DDE3 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +131,7 @@
 		D8FE0DE3214CBDF400C4DDE3 /* htn-2018 */ = {
 			isa = PBXGroup;
 			children = (
+				D893003E214D518B0070E38D /* Utilities */,
 				D8FE0E0B214CCAE400C4DDE3 /* Reusable Views */,
 				D8FE0DFB214CC59600C4DDE3 /* Model */,
 				D8FE0DF7214CC55800C4DDE3 /* View Controllers */,
@@ -149,8 +191,9 @@
 		D8FE0DFB214CC59600C4DDE3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D8930048214D59C30070E38D /* Object Models */,
+				D8930047214D59AE0070E38D /* Services */,
 				D8FE0DFE214CC6A300C4DDE3 /* UserPreferences.swift */,
-				D893003A214CCCAC0070E38D /* BaseApiService.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -158,6 +201,8 @@
 		D8FE0E0B214CCAE400C4DDE3 /* Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
+				D893003C214D50B20070E38D /* LoginFormView.swift */,
+				D832718E214D60440030E983 /* HTNTextField.swift */,
 			);
 			name = "Reusable Views";
 			sourceTree = "<group>";
@@ -279,11 +324,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FE0DE7214CBDF400C4DDE3 /* LoginViewController.swift in Sources */,
+				D832718D214D5DF40030E983 /* Colors.swift in Sources */,
 				D8FE0E08214CC9AE00C4DDE3 /* EditDocumentViewController.swift in Sources */,
 				D893003B214CCCAC0070E38D /* BaseApiService.swift in Sources */,
+				D8930042214D51E70070E38D /* UIView+Extensions.swift in Sources */,
+				D8930044214D597E0070E38D /* UserSignupService.swift in Sources */,
+				D893003D214D50B20070E38D /* LoginFormView.swift in Sources */,
 				D8FE0E01214CC8B800C4DDE3 /* BrowseDocumentsViewController.swift in Sources */,
 				D8FE0DFF214CC6A300C4DDE3 /* UserPreferences.swift in Sources */,
 				D8FE0DE5214CBDF400C4DDE3 /* AppDelegate.swift in Sources */,
+				D8930040214D519A0070E38D /* Dimens.swift in Sources */,
+				D832718F214D60440030E983 /* HTNTextField.swift in Sources */,
+				D8930046214D59870070E38D /* UserSigninService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

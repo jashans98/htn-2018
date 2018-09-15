@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad10_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -12,14 +12,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="htn_2018" customModuleProvider="target">
             <connections>
+                <outlet property="loginFormView" destination="fZe-Dj-50c" id="f4B-Lx-AUC"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ueV-qI-kg5"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MathTeX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Vm-Cr-Qa5">
+                    <rect key="frame" x="354" y="140" width="126" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" placeholderIntrinsicWidth="350" placeholderIntrinsicHeight="250" translatesAutoresizingMaskIntoConstraints="NO" id="fZe-Dj-50c" customClass="LoginFormView" customModule="htn_2018" customModuleProvider="target">
+                    <rect key="frame" x="242" y="391" width="350" height="250"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="350" id="c61-OM-Qi6"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="0.0" green="0.77507111200000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="fZe-Dj-50c" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" constant="-50" id="5Bi-IO-Pg7"/>
+                <constraint firstItem="fZe-Dj-50c" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="9R7-BX-J0p"/>
+                <constraint firstItem="7Vm-Cr-Qa5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="120" id="iVP-Rg-51y"/>
+                <constraint firstItem="7Vm-Cr-Qa5" firstAttribute="centerX" secondItem="fZe-Dj-50c" secondAttribute="centerX" id="kKc-4O-fZS"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>

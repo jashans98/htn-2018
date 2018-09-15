@@ -8,7 +8,14 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginFormViewDelegate {
+    
+    // MARK: View Properties
+    @IBOutlet private var loginFormView: LoginFormView!
+    
+    // MARK: Other Properties
+    private let userSignupService = UserSignupService()
+    private let userSigninService = UserSigninService()
     
     init() {
         super.init(nibName: String(describing: LoginViewController.self), bundle: nil)
@@ -20,7 +27,12 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: viewDidLoad
+        self.loginFormView.mode = .signup
+        self.loginFormView.delegate = self
     }
-
+    
+    // MARK: LoginFormViewDelegate
+    func loginFormViewDidTapLogin(_ view: LoginFormView) {
+        
+    }
 }
