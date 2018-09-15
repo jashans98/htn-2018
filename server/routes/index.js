@@ -1,7 +1,10 @@
-const routes = require('express').Router();
+const router = require('express').Router();
 
-routes.get('/', function(req, res){
+router.get('/', function(req, res){
   res.send('hi');
 });
 
-module.exports = routes;
+router.use('/users', require('./users'));
+router.use('/documents', require('./documents'));
+
+module.exports = router;
