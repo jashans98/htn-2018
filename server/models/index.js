@@ -4,7 +4,7 @@ const serviceAccount = require('../config/firebase-admin.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://mathtex-htn.firebaseio.com",
-  storageBucket: "mathtex-htn.appspot.com"
+  storageBucket: 'mathtex-htn.appspot.com',
 });
 
 const db = admin.firestore();

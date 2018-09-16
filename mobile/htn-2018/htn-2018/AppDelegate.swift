@@ -20,11 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let initialViewController: UIViewController
         
-        if UserPreferences.isLoggedIn() {
-            initialViewController = BrowseDocumentsViewController()
-        } else {
-            initialViewController = LoginViewController()
-        }
+//        if UserPreferences.isLoggedIn() {
+//            initialViewController = BrowseDocumentsViewController()
+//        } else {
+//            initialViewController = LoginViewController()
+//        }
+        initialViewController = EditDocumentViewController()
         
         window?.rootViewController = initialViewController
         window?.makeKeyAndVisible()
