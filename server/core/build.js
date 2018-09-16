@@ -5,7 +5,8 @@ const { storage }   = require('../models/index');
 
 const bucket        = storage.bucket();
 
-const build = (blocks, fileName) => {
+const build = async (blocks, fileName) => {
+  const renders = (await Promise.map(blocks, block => block.render())).join('\n');
   const templateString = `
     \\documentclass{article}
     \\usepackage[margin=1in]{geometry}
@@ -20,7 +21,7 @@ const build = (blocks, fileName) => {
     \\lhead{Demo purposes only.}
     \\rhead{Hack the North 2018}
     \\begin{document}
-    ${blocks.map(async b => await b.render())}
+    ${renders}
     \\end{document}
   `
   return toPdf(templateString, fileName);
@@ -34,33 +35,31 @@ const toPdf = (doc, fileName) => {
     pdfConversion.pipe(output);
     pdfConversion.on('error', err => {
       console.error(`Something bad happened while pdf converting ${fileName}`);
-      Promise.reject(err);
+      reject(err);
     });
 
     pdfConversion.on('finish', err => {
       if (err) {
         console.error(`Something bad happened while writing blob, ${err}`);
-        Promise.reject(err);
+        reject(err);
       }
 
       const metadata = {
         contentType: 'application/pdf',
       }
 
-      const url = `https://www.googleapis.com/storage/v1/b/mathtex-htn.appspot.com/o/${fileName}?alt=media`;
-
-      bucket.upload(fileName)
-        .then(() => {
+      bucket.upload(fileName, { public: true })
+        .then(response => {
           console.log(`Finished upload for ${fileName}`);
-          console.log(url);
-          Promise.resolve({
-            url,
+          const { mediaLink } = response[1];
+          resolve({
+            url: mediaLink,
             fileName
           });
         })
         .catch(err => {
           console.error(`Could not upload ${fileName}`, err);
-          Promise.reject(err)
+          reject(err)
         });
       });
     }

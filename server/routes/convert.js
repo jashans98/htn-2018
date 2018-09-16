@@ -13,8 +13,6 @@ ConvertRouter.post('/build/:filename', async (req, res) => {
         blocks
     } = JSON.parse(JSON.stringify(req.body));
 
-    console.log('hack the north')
-
     blocks = blocks.map(block => {
         if (block.type === 'text') {
             return new Text(block.data);
@@ -23,8 +21,10 @@ ConvertRouter.post('/build/:filename', async (req, res) => {
         }
     });
 
+    await console.log('About to call build');
     const response = await build(blocks, req.params.filename);
-   
+    await console.log('Finished calling build');
+    
     res.json(response);
     return response;
 });
