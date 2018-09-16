@@ -18,16 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        let initialViewController: UIViewController
+        let initialViewController = EditDocumentViewController()
+        let navigationVc = UINavigationController(rootViewController: initialViewController)
         
-//        if UserPreferences.isLoggedIn() {
-//            initialViewController = BrowseDocumentsViewController()
-//        } else {
-//            initialViewController = LoginViewController()
-//        }
-        initialViewController = EditDocumentViewController()
-        
-        window?.rootViewController = initialViewController
+        window?.rootViewController = navigationVc
         window?.makeKeyAndVisible()
         
         return true

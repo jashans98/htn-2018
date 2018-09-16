@@ -51,6 +51,7 @@ class EditDocumentViewController: UIViewController, EditDocumentToolbarViewDeleg
         
         self.tableView.canCancelContentTouches = false
         self.tableView.delaysContentTouches = false
+        self.tableView.allowsSelection = false
         
         self.tableView.register(
             TextEditableCell.self,
@@ -102,13 +103,14 @@ class EditDocumentViewController: UIViewController, EditDocumentToolbarViewDeleg
         self.persistChangesInModel()
         
         let completionBlock: CompileDocumentServiceCompletionBlock = { (pdfUrlString) in
-            let pdfDocument = PDFDocument(url: URL(string: pdfUrlString)!)
-            if let document = pdfDocument {
-                let vc = PDFViewerViewController(document: document)
-                vc.modalTransitionStyle = .crossDissolve
-                vc.modalPresentationStyle = .formSheet
-                self.present(vc, animated: true, completion: nil)
+            guard let data = try? Data(contentsOf: URL(string: pdfUrlString)!),
+                let pdfDocument = PDFDocument(data: data) else {
+                return
             }
+            
+            
+            let vc = PDFViewerViewController(document: pdfDocument)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         self.compileService.requestService(document: self.document, completionBlock: completionBlock)
@@ -117,6 +119,29 @@ class EditDocumentViewController: UIViewController, EditDocumentToolbarViewDeleg
     // MARK: BaseEditableCellDelegate
     func baseEditableCellPreparingForReuse(_ cell: BaseEditableCell) {
         self.persistChangesInModel()
+    }
+    
+    func baseEditableCellDidTapTrash(_ cell: BaseEditableCell, sourceView: UIView) {
+        guard let trashingIndex = cell.currentIndexPath?.row else {
+            return
+        }
+        
+        let alert = UIAlertController(
+            title: "Delete Component",
+            message: "Are you sure you want to delete this component? You cannot undo this action",
+            preferredStyle: .actionSheet
+        )
+        
+        alert.addAction(UIAlertAction(title: "No thanks", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes, delete", style: .destructive, handler: { (action) in
+            self.document.deleteBlock(atIndex: trashingIndex)
+            self.tableView.reloadData()
+        }))
+        
+        
+        alert.popoverPresentationController?.sourceView = sourceView
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -146,13 +171,19 @@ extension EditDocumentViewController: UITableViewDelegate, UITableViewDataSource
                 withIdentifier: EditDocumentViewController.mathCellReuseIdentifier,
                 for: indexPath
                 ) as! MathEditableCell
+            mathCell.drawingCanvasView.clear()
             mathCell.drawingCanvasView.setupWithCanvasPoints(touches)
             dequeuedCell = mathCell
         }
         
         dequeuedCell.currentIndexPath = indexPath
-        dequeuedCell.associatedBlock = document.orderedBlocks[indexPath.row]
+        dequeuedCell.delegate = self
         
         return dequeuedCell
+    }
+    
+    // MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }

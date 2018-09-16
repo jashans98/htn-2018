@@ -25,6 +25,9 @@ class PDFViewerViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        
+        self.view.backgroundColor = Colors.white
+        
         self.view.addSubview(self.pdfView)
         self.pdfView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -34,6 +37,20 @@ class PDFViewerViewController: UIViewController {
     override func viewDidLoad() {
         self.pdfView.document = self.document
         self.pdfView.displayMode = .singlePageContinuous
+        self.pdfView.maxScaleFactor = 6.0
+        
+        let closeButton = UIBarButtonItem(
+            barButtonSystemItem: .done,
+            target: self,
+            action: #selector(didTapDone)
+        )
+        
+        self.navigationController?.navigationItem.setLeftBarButton(closeButton, animated: false)
+        self.navigationController?.title = "PDF Preview"
+    }
+    
+    @objc private func didTapDone() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

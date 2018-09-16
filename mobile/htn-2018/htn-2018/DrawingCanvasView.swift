@@ -163,19 +163,65 @@ class DrawingCanvasView: UIView {
         self.isDrawing = false
     }
     
+    func addPointStart(_ canvasPoint: CanvasTouch) {
+        self.isDrawing = true
+        
+        
+        self.lastPoint = canvasPoint.point
+        self.allPoints.append(canvasPoint)
+        
+        pointCounter = 0
+    }
+    
+    func addPointMove(_ canvasPoint: CanvasTouch) {
+        currentStrokeBezierPath.move(to: lastPoint)
+        currentStrokeBezierPath.addLine(to: canvasPoint.point)
+        lastPoint = canvasPoint.point
+        
+        self.allPoints.append(canvasPoint)
+        
+        pointCounter += 1
+        
+        if pointCounter == pointLimit {
+            pointCounter = 0
+            renderToImage()
+            setNeedsDisplay()
+            currentStrokeBezierPath.removeAllPoints()
+        }
+        else {
+            setNeedsDisplay()
+        }
+    }
+    
+    func addPointEnd(_ point: CanvasTouch) {
+        self.allPoints.append(point)
+        self.isDrawing = false
+    }
+    
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchesEnded(touches, with: event)
     }
     
+    // redraws the canvas from an array of canvas points
     func setupWithCanvasPoints(_ canvasPoints: [CanvasTouch]) {
-        // TODO: render and display according to the available canvas points such
-        // that it can be edited with consistent state
+        self.clear()
+        for point in canvasPoints {
+            switch point.type {
+            case .down:
+                self.addPointStart(point)
+            case .move:
+                self.addPointMove(point)
+            case .up:
+                self.addPointEnd(point)
+            }
+        }
     }
     
     func clear() {
         preRenderImage = nil
         currentStrokeBezierPath.removeAllPoints()
         setNeedsDisplay()
+        self.allPoints = []
     }
     
     func hasLines() -> Bool {

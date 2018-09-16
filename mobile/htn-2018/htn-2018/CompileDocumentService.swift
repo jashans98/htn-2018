@@ -31,7 +31,7 @@ class CompileDocumentService: BaseApiService {
         print(string)
         
         Alamofire.request(
-            "http://localhost:5000/" + endPoint(),
+            "http://172.20.10.4:5000/" + endPoint(),
             method: .post,
             parameters: requestDict,
             encoding: JSONEncoding.default,
@@ -40,8 +40,9 @@ class CompileDocumentService: BaseApiService {
             switch response.result {
             case .success(let JSON):
                 let jsonDict = JSON as! NSDictionary
-                // TODO: replace with actual json url
-                self.completionBlock?("https://jashans98.github.io/files/resume.pdf")
+                if let pdfUrl = jsonDict.object(forKey: "url") as? String {
+                    self.completionBlock?(pdfUrl)
+                }
             case .failure(let error):
                 print("sad error: \(error)")
             }

@@ -10,17 +10,20 @@ import UIKit
 
 protocol BaseEditableCellDelegate: class {
     func baseEditableCellPreparingForReuse(_ cell: BaseEditableCell)
+    func baseEditableCellDidTapTrash(_ cell: BaseEditableCell, sourceView: UIView)
 }
 
 class BaseEditableCell: UITableViewCell {
     
+    private static let trashIconSize: CGFloat = 15.0
+    
     var currentIndexPath: IndexPath?
-    var associatedBlock: Document.Block?
     
     weak var delegate: BaseEditableCellDelegate?
     
     var editableView: UIView!
     let cellTypeLabel = UILabel()
+    let trashIcon = UIButton()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -56,6 +59,21 @@ class BaseEditableCell: UITableViewCell {
         self.cellTypeLabel.snp.makeConstraints { (make) in
             make.right.bottom.equalTo(self.editableView).inset(Dimens.smallScreenPadding)
         }
+        
+        self.trashIcon.setImage(#imageLiteral(resourceName: "icons8-trash-50"), for: .normal)
+        self.trashIcon.imageView?.contentMode = .scaleAspectFit
+        self.addSubview(self.trashIcon)
+        
+        self.trashIcon.snp.makeConstraints { (make) in
+            make.left.bottom.equalTo(self.editableView).inset(Dimens.smallScreenPadding)
+            make.width.height.equalTo(BaseEditableCell.trashIconSize)
+        }
+        
+        self.trashIcon.addTarget(self, action: #selector(didTapTrash), for: .touchUpInside)
+    }
+    
+    @objc private func didTapTrash() {
+        self.delegate?.baseEditableCellDidTapTrash(self, sourceView: self.trashIcon)
     }
     
     override func layoutSubviews() {
