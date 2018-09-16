@@ -9,14 +9,14 @@ const toPdf = (doc, fileName) => {
   return new Promise((resolve, reject) => {
     const output = fs.createWriteStream(fileName);
     const pdfConversion = Latex(doc);
-  
+
     pdfConversion.pipe(output);
     pdfConversion.on('error', err => {
       console.error(`Something bad happened while pdf converting ${fileName}`);
       Promise.reject(err);
     });
 
-    pdfConversion.on('finish', err => {      
+    pdfConversion.on('finish', err => {
       if (err) {
         console.error(`Something bad happened while writing blob, ${err}`);
         Promise.reject(err);
@@ -146,8 +146,8 @@ Hi my name is dog
 //   }
 // }
 
-console.log(testDoc);
+// console.log(testDoc);
 
-toPdf(testDoc, 'testName.pdf');
+// toPdf(testDoc, 'testName.pdf');
 
-//module.exports = toPdf;
+module.exports = toPdf;
