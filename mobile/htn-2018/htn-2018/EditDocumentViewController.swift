@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import PDFKit
 
 class EditDocumentViewController: UIViewController, EditDocumentToolbarViewDelegate, BaseEditableCellDelegate {
     
@@ -101,7 +101,17 @@ class EditDocumentViewController: UIViewController, EditDocumentToolbarViewDeleg
     func editDocumentToolBarViewDidTapCompile(_ view: EditDocumentToolbarView) {
         self.persistChangesInModel()
         
-        self.compileService.requestService(document: self.document)
+        let completionBlock: CompileDocumentServiceCompletionBlock = { (pdfUrlString) in
+            let pdfDocument = PDFDocument(url: URL(string: pdfUrlString)!)
+            if let document = pdfDocument {
+                let vc = PDFViewerViewController(document: document)
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .formSheet
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        
+        self.compileService.requestService(document: self.document, completionBlock: completionBlock)
     }
     
     // MARK: BaseEditableCellDelegate

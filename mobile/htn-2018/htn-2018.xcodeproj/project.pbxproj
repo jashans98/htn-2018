@@ -24,6 +24,7 @@
 		D8B3EF37214DDDBA006CEF5C /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF36214DDDBA006CEF5C /* Document.swift */; };
 		D8B3EF3B214DFF4A006CEF5C /* EditDocumentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF3A214DFF4A006CEF5C /* EditDocumentTableView.swift */; };
 		D8B3EF3D214E18D2006CEF5C /* CompileDocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF3C214E18D2006CEF5C /* CompileDocumentService.swift */; };
+		D8B3EF41214E3CAA006CEF5C /* PDFViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF40214E3CAA006CEF5C /* PDFViewerViewController.swift */; };
 		D8FE0DE5214CBDF400C4DDE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE0DE4214CBDF400C4DDE3 /* AppDelegate.swift */; };
 		D8FE0DE7214CBDF400C4DDE3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE0DE6214CBDF400C4DDE3 /* LoginViewController.swift */; };
 		D8FE0DEC214CBDF500C4DDE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8FE0DEB214CBDF500C4DDE3 /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		D8B3EF36214DDDBA006CEF5C /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		D8B3EF3A214DFF4A006CEF5C /* EditDocumentTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDocumentTableView.swift; sourceTree = "<group>"; };
 		D8B3EF3C214E18D2006CEF5C /* CompileDocumentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompileDocumentService.swift; sourceTree = "<group>"; };
+		D8B3EF40214E3CAA006CEF5C /* PDFViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewerViewController.swift; sourceTree = "<group>"; };
 		D8FE0DE1214CBDF400C4DDE3 /* htn-2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "htn-2018.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FE0DE4214CBDF400C4DDE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8FE0DE6214CBDF400C4DDE3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +140,14 @@
 			name = "Editable Cells";
 			sourceTree = "<group>";
 		};
+		D8B3EF3F214E3C96006CEF5C /* PDF Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				D8B3EF40214E3CAA006CEF5C /* PDFViewerViewController.swift */,
+			);
+			name = "PDF Viewer";
+			sourceTree = "<group>";
+		};
 		D8FE0DD8214CBDF400C4DDE3 = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +192,7 @@
 		D8FE0DF7214CC55800C4DDE3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D8B3EF3F214E3C96006CEF5C /* PDF Viewer */,
 				D8FE0DFA214CC57E00C4DDE3 /* Edit Document */,
 				D8FE0DF9214CC57400C4DDE3 /* Browse Documents */,
 				D8FE0DF8214CC56800C4DDE3 /* Login */,
@@ -358,6 +369,7 @@
 				D8FE0DE7214CBDF400C4DDE3 /* LoginViewController.swift in Sources */,
 				D8B3EF33214DD82B006CEF5C /* TextEditableCell.swift in Sources */,
 				D832718D214D5DF40030E983 /* Colors.swift in Sources */,
+				D8B3EF41214E3CAA006CEF5C /* PDFViewerViewController.swift in Sources */,
 				D8FE0E08214CC9AE00C4DDE3 /* EditDocumentViewController.swift in Sources */,
 				D893003B214CCCAC0070E38D /* BaseApiService.swift in Sources */,
 				D8930042214D51E70070E38D /* UIView+Extensions.swift in Sources */,

@@ -56,6 +56,7 @@ class Math extends Block {
       height: this.height,
       strokes: this.strokes
     });
+    console.log('rendered shit')
     return `$$${line}$$\n`;
   }
 }

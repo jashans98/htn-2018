@@ -9,15 +9,21 @@
 import Foundation
 import Alamofire
 
+typealias CompileDocumentServiceCompletionBlock = (String) -> Void
+
 class CompileDocumentService: BaseApiService {
     override func endPoint() -> String {
-        return "convert/build"
+        return "convert/build/test.pdf"
     }
     
-    func requestService(document: Document) {
+    var completionBlock: CompileDocumentServiceCompletionBlock?
+    
+    func requestService(document: Document, completionBlock: CompileDocumentServiceCompletionBlock? = nil) {
         let requestDict: JSONDict = [
             "blocks": document.orderedBlocks.map { $0.jsonDict() }
         ]
+        
+        self.completionBlock = completionBlock
         
         print("request payload: ")
         let data = try! JSONSerialization.data(withJSONObject: requestDict, options: .sortedKeys)
@@ -25,11 +31,20 @@ class CompileDocumentService: BaseApiService {
         print(string)
         
         Alamofire.request(
-            "http://localhost:5000/",
-            method: .post, parameters:
-            requestDict,
+            "http://localhost:5000/" + endPoint(),
+            method: .post,
+            parameters: requestDict,
             encoding: JSONEncoding.default,
             headers: nil
-        )
+        ).responseJSON { (response) in
+            switch response.result {
+            case .success(let JSON):
+                let jsonDict = JSON as! NSDictionary
+                // TODO: replace with actual json url
+                self.completionBlock?("https://jashans98.github.io/files/resume.pdf")
+            case .failure(let error):
+                print("sad error: \(error)")
+            }
+        }
     }
 }

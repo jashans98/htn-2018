@@ -7,6 +7,7 @@ const bucket        = storage.bucket();
 
 const build = async (blocks, fileName) => {
   const renders = (await Promise.map(blocks, block => block.render())).join('\n');
+
   const templateString = `
     \\documentclass{article}
     \\usepackage[margin=1in]{geometry}
