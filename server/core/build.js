@@ -5,12 +5,7 @@ const { storage }   = require('../models/index');
 
 const bucket        = storage.bucket();
 
-const build = async (blocks, fileName) => {
-  await console.log(blocks, 'hi');
-
-  let promises = (await Promise.map(blocks, block => block.render())).join('\n');
-
-  console.log(promises);
+const build = (blocks, fileName) => {
   const templateString = `
     \\documentclass{article}
     \\usepackage[margin=1in]{geometry}
@@ -25,9 +20,7 @@ const build = async (blocks, fileName) => {
     \\lhead{Demo purposes only.}
     \\rhead{Hack the North 2018}
     \\begin{document}
-    ${
-      (await Promise.map(blocks, block => block.render())).join('\n')
-    }
+    ${blocks.map(async b => await b.render())}
     \\end{document}
   `
   return toPdf(templateString, fileName);
@@ -59,6 +52,7 @@ const toPdf = (doc, fileName) => {
       bucket.upload(fileName)
         .then(() => {
           console.log(`Finished upload for ${fileName}`);
+          console.log(url);
           Promise.resolve({
             url,
             fileName

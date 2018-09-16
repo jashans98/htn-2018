@@ -5,7 +5,6 @@ router.get('/', function(req, res){
 });
 
 router.use('/users', require('./users'));
-router.use('/build', require('./build'));
 router.use('/documents', require('./documents'));
 router.use('/convert', require('./convert'));
 
