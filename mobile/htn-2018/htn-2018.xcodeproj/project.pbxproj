@@ -16,6 +16,8 @@
 		D8930042214D51E70070E38D /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8930041214D51E70070E38D /* UIView+Extensions.swift */; };
 		D8930044214D597E0070E38D /* UserSignupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8930043214D597D0070E38D /* UserSignupService.swift */; };
 		D8930046214D59870070E38D /* UserSigninService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8930045214D59870070E38D /* UserSigninService.swift */; };
+		D8B3EF2B214DB02E006CEF5C /* DrawingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF2A214DB02E006CEF5C /* DrawingCanvasView.swift */; };
+		D8B3EF2D214DBD86006CEF5C /* EditDocumentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF2C214DBD86006CEF5C /* EditDocumentToolbarView.swift */; };
 		D8FE0DE5214CBDF400C4DDE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE0DE4214CBDF400C4DDE3 /* AppDelegate.swift */; };
 		D8FE0DE7214CBDF400C4DDE3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE0DE6214CBDF400C4DDE3 /* LoginViewController.swift */; };
 		D8FE0DEC214CBDF500C4DDE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8FE0DEB214CBDF500C4DDE3 /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 		D8930041214D51E70070E38D /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		D8930043214D597D0070E38D /* UserSignupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignupService.swift; sourceTree = "<group>"; };
 		D8930045214D59870070E38D /* UserSigninService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninService.swift; sourceTree = "<group>"; };
+		D8B3EF2A214DB02E006CEF5C /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
+		D8B3EF2C214DBD86006CEF5C /* EditDocumentToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDocumentToolbarView.swift; sourceTree = "<group>"; };
 		D8FE0DE1214CBDF400C4DDE3 /* htn-2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "htn-2018.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FE0DE4214CBDF400C4DDE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8FE0DE6214CBDF400C4DDE3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 			children = (
 				D893003C214D50B20070E38D /* LoginFormView.swift */,
 				D832718E214D60440030E983 /* HTNTextField.swift */,
+				D8B3EF2A214DB02E006CEF5C /* DrawingCanvasView.swift */,
+				D8B3EF2C214DBD86006CEF5C /* EditDocumentToolbarView.swift */,
 			);
 			name = "Reusable Views";
 			sourceTree = "<group>";
@@ -330,12 +336,14 @@
 				D8930042214D51E70070E38D /* UIView+Extensions.swift in Sources */,
 				D8930044214D597E0070E38D /* UserSignupService.swift in Sources */,
 				D893003D214D50B20070E38D /* LoginFormView.swift in Sources */,
+				D8B3EF2D214DBD86006CEF5C /* EditDocumentToolbarView.swift in Sources */,
 				D8FE0E01214CC8B800C4DDE3 /* BrowseDocumentsViewController.swift in Sources */,
 				D8FE0DFF214CC6A300C4DDE3 /* UserPreferences.swift in Sources */,
 				D8FE0DE5214CBDF400C4DDE3 /* AppDelegate.swift in Sources */,
 				D8930040214D519A0070E38D /* Dimens.swift in Sources */,
 				D832718F214D60440030E983 /* HTNTextField.swift in Sources */,
 				D8930046214D59870070E38D /* UserSigninService.swift in Sources */,
+				D8B3EF2B214DB02E006CEF5C /* DrawingCanvasView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
