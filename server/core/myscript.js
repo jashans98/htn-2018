@@ -19,8 +19,8 @@ function translate({
   strokes,
 }) {
   const json = {
-    xDpi: dpi,
-    yDpi: dpi,
+    xDPI: dpi,
+    yDPI: dpi,
     width,
     height,
     contentType: 'Math',
