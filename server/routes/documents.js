@@ -76,7 +76,7 @@ DocumentsRouter.post('/blocks/add/math/:docId', async function(req, res) {
   const { docId } = req.params;
   const { strokes, width, height } = req.body;
   const pipe = await documents.addMathBlock(docId, strokes, width, height);
-  res.writeHead(200, {'Content-Type': 'image/png' });
+  res.writeHead(200, { 'Content-Type': 'image/png' });
   pipe.pipe(res);
 });
 
@@ -92,8 +92,9 @@ DocumentsRouter.post('/blocks/edit/text/:docId', async function(req, res) {
 DocumentsRouter.post('/blocks/edit/math/:docId', async function(req, res) {
   const { docId } = req.params;
   const { strokes, index, width, height } = req.body;
-  const img = await documents.editMathBlock(docId, strokes, width, height, index);
-  res.send(img);
+  const pipe = await documents.editMathBlock(docId, strokes, width, height, index);
+  res.writeHead(200, { 'Content-Type': 'image/png' });
+  pipe.pipe(res);
 });
 
 DocumentsRouter.post('/blocks/add/:docId', async function(req, res) {

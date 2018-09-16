@@ -69,17 +69,17 @@ async function editTextBlock(docId, text, index) {
 }
 
 async function addMathBlock(docId, strokes, width, height) {
-  const block = blocks.createMathBlock(strokes);
-  await documents.addBlock(docId, block);
-  const pipe = await myscript.translateToPNG({ width, height, strokes, image: true });
+  const block = blocks.createMathBlock(strokes, width, height);
+  // await documents.addBlock(docId, block);
+  const pipe = await myscript.translateToPNG({ width, height, strokes });
   return pipe;
 }
 
 async function editMathBlock(docId, strokes, width, height, index) {
-  const block = blocks.createMathBlock(strokes);
+  const block = blocks.createMathBlock(strokes, width, height);
   await documents.editBlock(docId, block, index);
-  const img = await myscript.translate({ width, height, strokes, image: true });
-  return img;
+  const pipe = await myscript.translateToPNG({ width, height, strokes });
+  return pipe;
 }
 
 module.exports = {

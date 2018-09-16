@@ -10,9 +10,11 @@ const createImageBlock = (url) => ({
   url,
 });
 
-const createMathBlock = (strokes) => ({
+const createMathBlock = (strokes, width, height) => ({
   type: 'math',
   strokes,
+  width,
+  height
 });
 
 class Stroke {
@@ -50,7 +52,7 @@ class Math extends Block {
   }
 
   async render() {
-    const line = await recognize.translate({ 
+    const line = await recognize.translate({
       dpi: 264,
       width: this.width,
       height: this.height,

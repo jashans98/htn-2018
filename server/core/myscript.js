@@ -42,6 +42,7 @@ function translateToPNG({ width, height, strokes }) {
     width,
     height,
     contentType: 'Math',
+    conversionState: 'DIGITAL_EDIT',
     strokeGroups: [{
       strokes
     }]
@@ -49,7 +50,6 @@ function translateToPNG({ width, height, strokes }) {
   const ops = Object.assign({}, options);
   ops.json = json;
   ops.headers.Accept = 'application/json, image/png';
-
   return new Promise(resolve => resolve(request(ops)));
 }
 
