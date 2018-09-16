@@ -1,5 +1,6 @@
 const url = "https://cloud.myscript.com/api/v4.0/iink/batch";
 const request = require('request');
+const fs = require('fs');
 
 const options = {
   url,
@@ -34,6 +35,25 @@ function translate({
   });
 }
 
+function translateToPNG({ width, height, strokes }) {
+  const json = {
+    xDPI: 90,
+    yDPI: 90,
+    width,
+    height,
+    contentType: 'Math',
+    strokeGroups: [{
+      strokes
+    }]
+  };
+  const ops = Object.assign({}, options);
+  ops.json = json;
+  ops.headers.Accept = 'application/json, image/png';
+
+  return new Promise(resolve => resolve(request(ops)));
+}
+
 module.exports = {
   translate,
+  translateToPNG,
 };

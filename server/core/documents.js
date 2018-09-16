@@ -1,6 +1,7 @@
 const users = require('../models/users');
 const documents = require('../models/documents');
 const blocks = require('./blocks');
+const myscript = require('./myscript');
 
 function getDoc(docId) {
   return documents.getDoc(docId);
@@ -67,14 +68,18 @@ async function editTextBlock(docId, text, index) {
   await documents.editBlock(docId, block, index);
 }
 
-async function addMathBlock(docId, strokes) {
+async function addMathBlock(docId, strokes, width, height) {
   const block = blocks.createMathBlock(strokes);
   await documents.addBlock(docId, block);
+  const pipe = await myscript.translateToPNG({ width, height, strokes, image: true });
+  return pipe;
 }
 
-async function editMathBlock(docId, strokes, index) {
+async function editMathBlock(docId, strokes, width, height, index) {
   const block = blocks.createMathBlock(strokes);
   await documents.editBlock(docId, block, index);
+  const img = await myscript.translate({ width, height, strokes, image: true });
+  return img;
 }
 
 module.exports = {
