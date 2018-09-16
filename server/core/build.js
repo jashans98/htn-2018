@@ -52,6 +52,7 @@ const toPdf = (doc, fileName) => {
       bucket.upload(fileName, { public: true })
         .then(response => {
           console.log(`Finished upload for ${fileName}`);
+          fs.unlinkSync(fileName);
           const { mediaLink } = response[1];
           resolve({
             url: mediaLink,

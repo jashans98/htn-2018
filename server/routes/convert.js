@@ -4,8 +4,14 @@ const build    = require('../core/build');
 const { Text, Math } = require('../core/blocks');
 
 ConvertRouter.post('/math', async function(req, res) {
-    const resp = await myscript.translate(req.body);
-    res.json(resp);
+  const { data, width, height } = req.body;
+    const pipe = await myscript.translateToPNG({
+      strokes: data,
+      width,
+      height,
+    });
+    res.writeHead(200, { 'Content-Type': 'image/png' });
+    pipe.pipe(res);
 });
 
 ConvertRouter.post('/build/:filename', async (req, res) => {
@@ -24,7 +30,7 @@ ConvertRouter.post('/build/:filename', async (req, res) => {
     await console.log('About to call build');
     const response = await build(blocks, req.params.filename);
     await console.log('Finished calling build');
-    
+
     res.json(response);
     return response;
 });

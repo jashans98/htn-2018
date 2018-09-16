@@ -70,7 +70,7 @@ async function editTextBlock(docId, text, index) {
 
 async function addMathBlock(docId, strokes, width, height) {
   const block = blocks.createMathBlock(strokes, width, height);
-  // await documents.addBlock(docId, block);
+  await documents.addBlock(docId, block);
   const pipe = await myscript.translateToPNG({ width, height, strokes });
   return pipe;
 }

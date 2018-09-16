@@ -59,6 +59,7 @@ class Math extends Block {
       strokes: this.strokes
     });
     console.log('rendered shit')
+    if (line == null) return '';
     return `$$${line}$$\n`;
   }
 }
