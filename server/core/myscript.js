@@ -3,6 +3,7 @@ const request = require('request');
 
 const options = {
   url,
+  method: 'POST',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json, application/x-latex, text/plain, application/vnd.myscript.jiix',
@@ -17,7 +18,7 @@ function translate({
   height,
   strokes,
 }) {
-  const form = {
+  const json = {
     xDpi: dpi,
     yDpi: dpi,
     width,
@@ -28,9 +29,9 @@ function translate({
     }]
   };
   const ops = Object.assign({}, options);
-  ops.form = form;
+  ops.json = json;
   return new Promise(resolve => {
-    request.post(ops, (err, resp, body) => resolve(body));
+    request(ops, (err, resp, body) => resolve(body));
   });
 }
 
