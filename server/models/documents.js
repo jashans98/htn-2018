@@ -90,6 +90,17 @@ async function addBlock(docId, block) {
   });
 }
 
+async function addBlocks(docId, newBlocks) {
+  const docRef = collection.doc(docId);
+  db.runTransaction(async t => {
+    const doc = await t.get(docRef);
+    if (!doc.exists) return;
+    let blocks = doc.get('blocks') || [];
+    blocks = blocks.concat(newBlocks);
+    await t.update(docRef, { blocks });
+  });
+}
+
 async function removeBlock(docId, index) {
   const docRef = collection.doc(docId);
   db.runTransaction(async t => {
@@ -98,6 +109,18 @@ async function removeBlock(docId, index) {
     const blocks = doc.get('blocks') || [];
     if (index >= blocks.length) return;
     blocks.splice(index, 1);
+    await t.update(docRef, { blocks });
+  });
+}
+
+async function editBlock(docId, block, index) {
+  const docRef = collection.doc(docId);
+  db.runTransaction(async t => {
+    const doc = await t.get(docRef);
+    if (!doc.exists) return;
+    const blocks = doc.get('blocks') || [];
+    if (index >= blocks.length) return;
+    blocks[index] = block;
     await t.update(docRef, { blocks });
   });
 }
@@ -174,7 +197,9 @@ module.exports = {
   addWriteUser,
   removeWriteUser,
   addBlock,
+  addBlocks,
   removeBlock,
+  editBlock,
   getDoc,
   isReadUser,
   isWriteUser,

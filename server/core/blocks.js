@@ -8,9 +8,9 @@ const createImageBlock = (url) => ({
   url,
 });
 
-const createMathBlock = (url) => ({
+const createMathBlock = (strokes) => ({
   type: 'math',
-  url,
+  strokes,
 });
 
 module.exports = {

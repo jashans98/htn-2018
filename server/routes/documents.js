@@ -71,6 +71,37 @@ DocumentsRouter.post('/blocks/add/text/:docId', async function(req, res) {
   res.send('Success!');
 });
 
+// Adds math block
+DocumentsRouter.post('/blocks/add/math/:docId', async function(req, res) {
+  const { docId } = req.params;
+  const strokes = req.body.strokes;
+  await documents.addMathBlock(docId, strokes);
+  res.send('Success!');
+});
+
+// Edits text block
+DocumentsRouter.post('/blocks/edit/text/:docId', async function(req, res) {
+  const { docId } = req.params;
+  const { text, index } = req.body;
+  await documents.editTextBlock(docId, text, index);
+  res.send('Success!');
+});
+
+// Edits math block
+DocumentsRouter.post('/blocks/edit/math/:docId', async function(req, res) {
+  const { docId } = req.params;
+  const { strokes, index } = req.body;
+  await documents.editMathBlock(docId, strokes, index);
+  res.send('Success!');
+});
+
+DocumentsRouter.post('/blocks/add/:docId', async function(req, res) {
+  const { docId } = req.params;
+  const blocks = req.body;
+  await documents.addBlocks(docId, blocks);
+  res.send('Success!');
+});
+
 // Removes block at index
 DocumentsRouter.get('/blocks/remove/:docId/:index', async function(req, res) {
   const { docId, index } = req.params;

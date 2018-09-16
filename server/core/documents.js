@@ -49,9 +49,32 @@ async function removeBlock(docId, index) {
   await documents.removeBlock(docId, index);
 }
 
+async function addBlocks(docId, blockArr) {
+  blockArr = blockArr.map(({ type, data }) => {
+    if (type === 'math') return blocks.createMathBlock(data);
+    else return blocks.createTextBlock(data);
+  });
+  await documents.addBlocks(docId, blockArr);
+}
+
 async function addTextBlock(docId, text) {
   const block = blocks.createTextBlock(text);
   await documents.addBlock(docId, block);
+}
+
+async function editTextBlock(docId, text, index) {
+  const block = blocks.createTextBlock(text);
+  await documents.editBlock(docId, block, index);
+}
+
+async function addMathBlock(docId, strokes) {
+  const block = blocks.createMathBlock(strokes);
+  await documents.addBlock(docId, block);
+}
+
+async function editMathBlock(docId, strokes, index) {
+  const block = blocks.createMathBlock(strokes);
+  await documents.editBlock(docId, block, index);
 }
 
 module.exports = {
@@ -65,5 +88,9 @@ module.exports = {
   removeWriteUser,
   isWriteUser,
   removeBlock,
+  addBlocks,
   addTextBlock,
+  editTextBlock,
+  addMathBlock,
+  editMathBlock,
 };

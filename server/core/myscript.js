@@ -13,14 +13,13 @@ const options = {
 };
 
 function translate({
-  dpi,
   width,
   height,
   strokes,
 }) {
   const json = {
-    xDPI: dpi,
-    yDPI: dpi,
+    xDPI: 90,
+    yDPI: 90,
     width,
     height,
     contentType: 'Math',
