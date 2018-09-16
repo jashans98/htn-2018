@@ -17,4 +17,7 @@ class Colors {
     static let gray4 = UIColor(red: 0.55, green: 0.55, blue: 0.55, alpha: 1)
     static let gray5 = UIColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
     static let gray6 = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1)
+    static let gray7 = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
+    
+    static let highlightedBlue = UIColor(red: 0.341, green: 0.627, blue: 0.827, alpha: 1)
 }

@@ -18,6 +18,12 @@
 		D8930046214D59870070E38D /* UserSigninService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8930045214D59870070E38D /* UserSigninService.swift */; };
 		D8B3EF2B214DB02E006CEF5C /* DrawingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF2A214DB02E006CEF5C /* DrawingCanvasView.swift */; };
 		D8B3EF2D214DBD86006CEF5C /* EditDocumentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF2C214DBD86006CEF5C /* EditDocumentToolbarView.swift */; };
+		D8B3EF31214DD75C006CEF5C /* BaseEditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF30214DD75C006CEF5C /* BaseEditableCell.swift */; };
+		D8B3EF33214DD82B006CEF5C /* TextEditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF32214DD82B006CEF5C /* TextEditableCell.swift */; };
+		D8B3EF35214DD9D0006CEF5C /* MathEditableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF34214DD9D0006CEF5C /* MathEditableCell.swift */; };
+		D8B3EF37214DDDBA006CEF5C /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF36214DDDBA006CEF5C /* Document.swift */; };
+		D8B3EF3B214DFF4A006CEF5C /* EditDocumentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF3A214DFF4A006CEF5C /* EditDocumentTableView.swift */; };
+		D8B3EF3D214E18D2006CEF5C /* CompileDocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B3EF3C214E18D2006CEF5C /* CompileDocumentService.swift */; };
 		D8FE0DE5214CBDF400C4DDE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE0DE4214CBDF400C4DDE3 /* AppDelegate.swift */; };
 		D8FE0DE7214CBDF400C4DDE3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FE0DE6214CBDF400C4DDE3 /* LoginViewController.swift */; };
 		D8FE0DEC214CBDF500C4DDE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8FE0DEB214CBDF500C4DDE3 /* Assets.xcassets */; };
@@ -43,6 +49,12 @@
 		D8930045214D59870070E38D /* UserSigninService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigninService.swift; sourceTree = "<group>"; };
 		D8B3EF2A214DB02E006CEF5C /* DrawingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingCanvasView.swift; sourceTree = "<group>"; };
 		D8B3EF2C214DBD86006CEF5C /* EditDocumentToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDocumentToolbarView.swift; sourceTree = "<group>"; };
+		D8B3EF30214DD75C006CEF5C /* BaseEditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEditableCell.swift; sourceTree = "<group>"; };
+		D8B3EF32214DD82B006CEF5C /* TextEditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditableCell.swift; sourceTree = "<group>"; };
+		D8B3EF34214DD9D0006CEF5C /* MathEditableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathEditableCell.swift; sourceTree = "<group>"; };
+		D8B3EF36214DDDBA006CEF5C /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		D8B3EF3A214DFF4A006CEF5C /* EditDocumentTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDocumentTableView.swift; sourceTree = "<group>"; };
+		D8B3EF3C214E18D2006CEF5C /* CompileDocumentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompileDocumentService.swift; sourceTree = "<group>"; };
 		D8FE0DE1214CBDF400C4DDE3 /* htn-2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "htn-2018.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8FE0DE4214CBDF400C4DDE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8FE0DE6214CBDF400C4DDE3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +115,7 @@
 				D893003A214CCCAC0070E38D /* BaseApiService.swift */,
 				D8930043214D597D0070E38D /* UserSignupService.swift */,
 				D8930045214D59870070E38D /* UserSigninService.swift */,
+				D8B3EF3C214E18D2006CEF5C /* CompileDocumentService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -110,8 +123,19 @@
 		D8930048214D59C30070E38D /* Object Models */ = {
 			isa = PBXGroup;
 			children = (
+				D8B3EF36214DDDBA006CEF5C /* Document.swift */,
 			);
 			name = "Object Models";
+			sourceTree = "<group>";
+		};
+		D8B3EF2F214DD73F006CEF5C /* Editable Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D8B3EF30214DD75C006CEF5C /* BaseEditableCell.swift */,
+				D8B3EF32214DD82B006CEF5C /* TextEditableCell.swift */,
+				D8B3EF34214DD9D0006CEF5C /* MathEditableCell.swift */,
+			);
+			name = "Editable Cells";
 			sourceTree = "<group>";
 		};
 		D8FE0DD8214CBDF400C4DDE3 = {
@@ -186,8 +210,10 @@
 		D8FE0DFA214CC57E00C4DDE3 /* Edit Document */ = {
 			isa = PBXGroup;
 			children = (
+				D8B3EF2F214DD73F006CEF5C /* Editable Cells */,
 				D8FE0E07214CC9AE00C4DDE3 /* EditDocumentViewController.swift */,
 				D8FE0E09214CC9BD00C4DDE3 /* EditDocumentViewController.xib */,
+				D8B3EF3A214DFF4A006CEF5C /* EditDocumentTableView.swift */,
 			);
 			name = "Edit Document";
 			sourceTree = "<group>";
@@ -330,11 +356,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FE0DE7214CBDF400C4DDE3 /* LoginViewController.swift in Sources */,
+				D8B3EF33214DD82B006CEF5C /* TextEditableCell.swift in Sources */,
 				D832718D214D5DF40030E983 /* Colors.swift in Sources */,
 				D8FE0E08214CC9AE00C4DDE3 /* EditDocumentViewController.swift in Sources */,
 				D893003B214CCCAC0070E38D /* BaseApiService.swift in Sources */,
 				D8930042214D51E70070E38D /* UIView+Extensions.swift in Sources */,
+				D8B3EF3B214DFF4A006CEF5C /* EditDocumentTableView.swift in Sources */,
 				D8930044214D597E0070E38D /* UserSignupService.swift in Sources */,
+				D8B3EF35214DD9D0006CEF5C /* MathEditableCell.swift in Sources */,
+				D8B3EF3D214E18D2006CEF5C /* CompileDocumentService.swift in Sources */,
+				D8B3EF31214DD75C006CEF5C /* BaseEditableCell.swift in Sources */,
 				D893003D214D50B20070E38D /* LoginFormView.swift in Sources */,
 				D8B3EF2D214DBD86006CEF5C /* EditDocumentToolbarView.swift in Sources */,
 				D8FE0E01214CC8B800C4DDE3 /* BrowseDocumentsViewController.swift in Sources */,
@@ -344,6 +375,7 @@
 				D832718F214D60440030E983 /* HTNTextField.swift in Sources */,
 				D8930046214D59870070E38D /* UserSigninService.swift in Sources */,
 				D8B3EF2B214DB02E006CEF5C /* DrawingCanvasView.swift in Sources */,
+				D8B3EF37214DDDBA006CEF5C /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

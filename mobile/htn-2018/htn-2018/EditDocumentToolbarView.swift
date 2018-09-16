@@ -13,11 +13,13 @@ import SnapKit
 protocol EditDocumentToolbarViewDelegate: class {
     func editDocumentToolBarViewDidTapNewMathSection(_ view: EditDocumentToolbarView)
     func editDocumentToolBarViewDidTapNewTextSection(_ view: EditDocumentToolbarView)
+    func editDocumentToolBarViewDidTapCompile(_ view: EditDocumentToolbarView)
 }
 
 class EditDocumentToolbarView: UIView {
     let newMathButton = UIButton()
     let newTextButton = UIButton()
+    let compileButton = UIButton()
     
     weak var delegate: EditDocumentToolbarViewDelegate?
     
@@ -53,6 +55,18 @@ class EditDocumentToolbarView: UIView {
         
         self.newMathButton.addTarget(self, action: #selector(didTapMath), for: .touchUpInside)
         self.newTextButton.addTarget(self, action: #selector(didTapText), for: .touchUpInside)
+        
+        self.compileButton.setTitle("Compile", for: .normal)
+        self.compileButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: Dimens.fontSizeLarge)
+        self.compileButton.setTitleColor(Colors.gray1, for: .normal)
+        
+        self.addSubview(self.compileButton)
+        
+        self.compileButton.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
+        
+        self.compileButton.addTarget(self, action: #selector(didTapCompile), for: .touchUpInside)
     }
     
     @objc private func didTapMath() {
@@ -61,6 +75,10 @@ class EditDocumentToolbarView: UIView {
     
     @objc private func didTapText() {
         self.delegate?.editDocumentToolBarViewDidTapNewTextSection(self)
+    }
+    
+    @objc private func didTapCompile() {
+        self.delegate?.editDocumentToolBarViewDidTapCompile(self)
     }
 }
 

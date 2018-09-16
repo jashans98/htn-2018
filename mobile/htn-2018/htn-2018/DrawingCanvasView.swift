@@ -10,17 +10,35 @@ import Foundation
 import UIKit
 
 struct CanvasTouch {
-    enum Event {
-        case up, down, move
+    enum Event: String {
+        case up = "up"
+        case down = "down"
+        case move = "move"
     }
     
     let point: CGPoint
     let type: Event
+    let time: TimeInterval
+    
+    func jsonDict() -> JSONDict {
+        return [
+            "width: ": 1080,
+            "height": 120,
+            "data": [
+                "type": "move",
+                "x": point.x,
+                "y": point.y,
+                "time": time
+            ]
+        ]
+    }
 }
 
 class DrawingCanvasView: UIView {
     var drawColor: UIColor = Colors.gray2
     var lineWidth: CGFloat = 2.0
+    
+    var isDrawing: Bool = false
     
     var allPoints: [CanvasTouch] = []
     
@@ -44,6 +62,8 @@ class DrawingCanvasView: UIView {
         self.currentStrokeBezierPath = UIBezierPath()
         self.currentStrokeBezierPath.lineJoinStyle = .round
         self.currentStrokeBezierPath.lineCapStyle = .round
+        
+        self.backgroundColor = Colors.white
     }
     
     func renderToImage() {
@@ -80,7 +100,17 @@ class DrawingCanvasView: UIView {
             touch.type == .stylus else {
                 return
         }
-        lastPoint = touch.location(in: self)
+        
+        guard let event = event else {
+            return
+        }
+        
+        self.isDrawing = true
+        
+        
+        self.lastPoint = touch.location(in: self)
+        self.allPoints.append(CanvasTouch(point: self.lastPoint, type: .down, time: event.timestamp))
+        
         pointCounter = 0
     }
     
@@ -91,9 +121,15 @@ class DrawingCanvasView: UIView {
         }
         let newPoint = touch.location(in: self)
         
+        guard let event = event else {
+            return
+        }
+        
         currentStrokeBezierPath.move(to: lastPoint)
         currentStrokeBezierPath.addLine(to: newPoint)
         lastPoint = newPoint
+        
+        self.allPoints.append(CanvasTouch(point: self.lastPoint, type: .move, time: event.timestamp))
         
         pointCounter += 1
         
@@ -113,10 +149,27 @@ class DrawingCanvasView: UIView {
         renderToImage()
         setNeedsDisplay()
         currentStrokeBezierPath.removeAllPoints()
+        
+        guard let event = event else {
+            return
+        }
+        
+        if let lastPoint = self.lastPoint {
+            self.allPoints.append(CanvasTouch(point: lastPoint, type: .up, time: event.timestamp))
+        } else if let lastPoint = self.allPoints.last?.point {
+            self.allPoints.append(CanvasTouch(point: lastPoint, type: .up, time: event.timestamp))
+        }
+        
+        self.isDrawing = false
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchesEnded(touches, with: event)
+    }
+    
+    func setupWithCanvasPoints(_ canvasPoints: [CanvasTouch]) {
+        // TODO: render and display according to the available canvas points such
+        // that it can be edited with consistent state
     }
     
     func clear() {

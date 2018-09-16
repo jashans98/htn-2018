@@ -21,4 +21,6 @@ class Dimens {
     
     // Other
     static let textFieldHeight: CGFloat = 40.0
+    static let smallCornerRadius: CGFloat = 2.0
+    static let shadowRadius: CGFloat = 4.0
 }
