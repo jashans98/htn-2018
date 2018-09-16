@@ -10,6 +10,13 @@ import UIKit
 
 
 class EditDocumentViewController: UIViewController {
+    
+    @IBOutlet private var editDocumentToolbarView: EditDocumentToolbarView!
+    @IBOutlet private var tableView: UITableView!
+    
+    static let textReuseIdentifier = "textCell"
+    static let mathReuseIdentifier = "mathCell"
+    
     init() {
         super.init(nibName: String(describing: EditDocumentViewController.self), bundle: nil)
     }
